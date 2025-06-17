@@ -12,11 +12,17 @@ class Command(BaseCommand):
         except pyodbc.ProgrammingError as ex:
             print(ex)
         else:
+            user_input = input("Are you sure you want to drop the database?\n"
+                               "Enter the name of the current database to confirm: ")
+            if user_input != DATABASE:
+                print("The name of the database has not been given.\n"
+                      "The database will not be dropped.")
+                return
+
             conn.autocommit = True
             try:
-                conn.execute(fr'CREATE DATABASE {DATABASE};')
+                conn.execute(fr'DROP DATABASE {DATABASE};')
             except pyodbc.ProgrammingError as ex:
                 print(ex)
             else:
-                print(f'The databse {DATABASE} was created successfully.')
-
+                print(f'The databse {DATABASE} has been dropped.')
