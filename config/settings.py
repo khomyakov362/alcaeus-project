@@ -159,3 +159,8 @@ TEMP_FOLDER = (
 
 BOOKS_REPO = 'https://github.com/PerseusDL/canonical-latinLit.git'
 
+# Path to book data inside the cloned repository.
+
+REPO_DATA_DIR = (
+    TEMP_FOLDER / 'data'
+)

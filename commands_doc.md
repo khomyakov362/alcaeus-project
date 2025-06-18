@@ -24,3 +24,22 @@ The command is given from the pad database given in .env.
 Drops the current database. The caller will be asked to provide the name
 of the current database as user input to confirm.
 
+## Books
+
+### clonerepo
+
+The command clones the repository from settings.BOOKS_REPO 
+and puts it into settings.TEMP_FOLDER. 
+If the folder is not empty, its contents will be deleted;
+if it is not present, it will be created.
+
+The command does the equivalent of 
+```bash
+    git clone --depth 1 \<BOOKS_REPO\> \<TEMP_FOLDER\>
+```
+
+### deltemp
+
+Deletes temporary files at settings.TEMP_FOLDER.
+
+
