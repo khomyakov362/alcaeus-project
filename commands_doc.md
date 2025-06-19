@@ -24,6 +24,20 @@ The command is given from the pad database given in .env.
 Drops the current database. The caller will be asked to provide the name
 of the current database as user input to confirm.
 
+### setupdb
+
+Sets up a fresh database for the project;
+is equivalent of running the following commnds:
+
+```bash
+    py manage.py ccdb
+    py manage.py makemigrations \<for each app\>
+    py manage.py migrate
+    py manage.py ccsu
+    py manage.py clonerepo
+    py manage.py loadbooks
+```
+
 ## Books
 
 ### clonerepo

@@ -31,6 +31,14 @@ INSTALLED_APPS = [
     'books',
 ]
 
+# Here apps needing migrations are listed.
+
+CUSTOM_APPS = [
+    'dbapp',
+    'users',
+    'books',
+]
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
