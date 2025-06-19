@@ -42,4 +42,9 @@ The command does the equivalent of
 
 Deletes temporary files at settings.TEMP_FOLDER.
 
+### loadbooks
+
+Loads all the books from the repository data directory into the database.
+Does not check, if the books are already there. The same book can be loaded many times.
+
 
