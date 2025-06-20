@@ -24,6 +24,6 @@ from config import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
-    # path('', include('books.urls', namespace='books')),
+     path('', include('books.urls', namespace='books')),
     # path('users/', include('users.urls', namespace='users')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

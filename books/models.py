@@ -21,3 +21,30 @@ class Book(models.Model):
         verbose_name = 'book'
         verbose_name_plural = 'books'
 
+    @staticmethod
+    def _shorten(string: models.CharField) -> str:
+        string = str(string).strip()
+        if len(string) < 40:
+            return string
+        else:
+            return string[0:37] + '...'
+
+    @property
+    def short_title(self) -> str:
+        return Book._shorten(self.title)
+
+    @property
+    def short_author(self) -> str:
+        return Book._shorten(self.author)
+    
+    @property
+    def short_date(self) -> str: 
+        return str(self.date).strip()[0:4]
+
+    @property
+    def cap_lang(self) -> str:
+        return str(self.language).capitalize()
+
+
+
+

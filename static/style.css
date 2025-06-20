@@ -43,6 +43,9 @@ header nav a:hover {
     text-shadow: none;
 }
 
+main {
+    height: 500px;
+}
 
 footer {
     display: flex;
