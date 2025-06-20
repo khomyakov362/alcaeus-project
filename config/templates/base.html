@@ -5,19 +5,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static './style.css' %}">
+    <link rel="stylesheet" href="{% static './colors.css' %}">
+    <link rel="stylesheet" href="{% static './helper-classes.css' %}">
     <title>{{ title }}</title>
 </head>
 <body>
 
-    <header>HEADER</header>
-    <h1>{{ title }}</h1>
+    <header class="tertiary flex">
+        <h1>Alcaeus Project</h1>
+        <nav class="flex">
+            <div><a href="#">Browse Library</a></div>
+            <div><a href="#">About</a></div>
+            <div><a href="#">Sign In</a></div>
+        </nav>
+    </header>
+    <h1 class="secondary">{{ title }}</h1>
 
     <main>
     {% block content %}
     {% endblock %}
     </main>
 
-    <footer>FOOTER</footer>
+    <footer class="tertiary">
+
+        <div>
+        <p>This is a student project by Nikolay Khomyakov.</p>  <p>You can contact me at <em>khomaykov362@gmail.com</em></p>
+        </div>
+
+    </footer>
 
 </body>
 </html>

@@ -27,11 +27,11 @@ of the current database as user input to confirm.
 ### setupdb
 
 Sets up a fresh database for the project;
-is equivalent of running the following commnds:
+is the equivalent of running the following commnds:
 
 ```bash
     py manage.py ccdb
-    py manage.py makemigrations \<for each app\>
+    py manage.py makemigrations <for each app>
     py manage.py migrate
     py manage.py ccsu
     py manage.py clonerepo
@@ -49,7 +49,7 @@ if it is not present, it will be created.
 
 The command does the equivalent of 
 ```bash
-    git clone --depth 1 \<BOOKS_REPO\> \<TEMP_FOLDER\>
+    git clone --depth 1 <BOOKS_REPO> <TEMP_FOLDER\
 ```
 
 ### deltemp

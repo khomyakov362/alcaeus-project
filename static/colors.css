@@ -1,0 +1,23 @@
+:root {
+    --primary: rgb(234, 234, 234);
+    --secondary: rgb(205, 205, 205);
+    --tertiary: rgb(88, 88, 88);
+    --text-primary: rgb(21, 21, 21);
+    --text-secondary: rgb(4, 4, 4);
+    --text-tertiary: rgb(230, 230, 230);
+}
+
+.primary {
+    background-color: var(--primary);
+    color: var(--text-primary);
+}
+
+.secondary {
+    background-color: var(--secondary);
+    color: var(--text-secondary);
+}
+
+.tertiary {
+    background-color: var(--tertiary);
+    color: var(--text-tertiary);
+}
