@@ -23,6 +23,8 @@ class Book(models.Model):
 
     @staticmethod
     def _shorten(string: models.CharField) -> str:
+        if string is None:
+            return "\u2014"
         string = str(string).strip()
         if len(string) < 40:
             return string
@@ -39,10 +41,14 @@ class Book(models.Model):
     
     @property
     def short_date(self) -> str: 
+        if self.date is None:
+            return "\u2014"
         return str(self.date).strip()[0:4]
 
     @property
     def cap_lang(self) -> str:
+        if self.language is None:
+            return "\u2014"
         return str(self.language).capitalize()
 
 

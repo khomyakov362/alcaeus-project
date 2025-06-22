@@ -43,8 +43,80 @@ header nav a:hover {
     text-shadow: none;
 }
 
+
+
 main {
-    height: 500px;
+    min-height: 500px;
+}
+
+main section {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main section > * {
+    width: 80%;
+}
+
+#list-head {
+    font-weight: bold;
+}
+
+.book-el {
+    justify-content: center;
+    align-items: center;
+    height: 2rem;
+    padding: 5px;
+}
+
+.title, .author {
+    width: 40%;
+}
+
+.language, .year {
+    width: 10%;
+}
+
+.year {
+    text-align: center;
+}
+
+#pagination {
+    justify-content: center;
+    align-items: center;
+}
+
+#pagination ul {
+    list-style: none;
+    padding: 5px;
+    width: 70%;
+    align-items: center;
+    justify-content: center;
+}
+
+#pagination a {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    text-align: center;
+    line-height: 2.5rem;
+}
+
+#pagination .active {
+    background-color: var(--tertiary);
+    color: var(--text-tertiary);
+    border: 1px solid var(--text-tertiary);
+    border-radius: 5%;
+}
+
+#pagination .active:hover, .disabled {
+    background-color: var(--socondry);
+    color: var(--text-secondary);
+    border: 1px solid var(--text-secondary);
 }
 
 footer {

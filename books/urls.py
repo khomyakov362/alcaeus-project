@@ -7,6 +7,6 @@ app_name = BooksConfig.name
 
 
 urlpatterns = [
-    path('list/', views.BooksListView.as_view(), name='books_list'),
+    path('', views.BooksListView.as_view(), name='books_list'),
 
 ]

@@ -5,7 +5,7 @@ from books.models import Book
 
 class BooksListView(ListView):
     model = Book
-    paginate_by = 10
+    paginate_by = 30
     extra_contenxt = {
         'title': 'Books List'
     }

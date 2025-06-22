@@ -2,18 +2,27 @@
 
 {% block content %}
 
+<section>
+
 <ul id="book-list">
-    <li id="list-head" class="book-el flex">
-        <div>Title</div> <div>Author</div> <div>Language</div> <div>Edition Year</div>
+    <li id="list-head" class="book-el flex tertiary">
+        <div class="title">Title</div> 
+        <div class="author">Author</div> 
+        <div class="language">Language</div> 
+        <div class="year">Edition Year</div>
     </li>
     {% for object in object_list %}
     <li class="book-el flex">
-        <div>{{ object.short_title }}</div>
-        <div>{{ object.short_author }}</div>
-        <div>{{ object.cap_lang }}</div>
-        <div>{{ object.short_date }}</div>
+        <div class="title">{{ object.short_title|default:"&mdash;" }}</div>
+        <div class="author">{{ object.short_author|default:"&mdash;" }}</div>
+        <div class="language">{{ object.cap_lang|default:"&mdash;" }}</div>
+        <div class="year">{{ object.short_date|default:"&mdash;" }}</div>
     </li>
     {% endfor %}
 </ul>
+
+</section>
+
+{% include 'books/includes/list_pagination.html' %}
 
 {% endblock %}
