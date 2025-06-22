@@ -50,6 +50,16 @@ class Book(models.Model):
         if self.language is None:
             return "\u2014"
         return str(self.language).capitalize()
+    
+    @property
+    def year_as_num(self) -> int | None:
+        if self.date is None:
+            return None
+        try: 
+            return int(str(self.date).strip()[0:4])
+        except ValueError:
+            return None
+
 
 
 

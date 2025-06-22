@@ -8,5 +8,4 @@ app_name = BooksConfig.name
 
 urlpatterns = [
     path('', views.BooksListView.as_view(), name='books_list'),
-
 ]

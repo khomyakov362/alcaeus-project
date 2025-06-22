@@ -3,6 +3,21 @@
 {% block content %}
 
 <section>
+    <form action="{% url 'books:books_list' %}" method="get">
+            
+            <label for="title">Title</label> <input type="text" name="title">
+            <label for="author">Author</label> <input type="text" name="author">
+            <label for="lang">Language</label>
+            <select name="lang">
+                <option value="">&mdash;</option>
+                <option value="latin">Latin</option>
+                <option value="english">English</option>
+            </select>
+            <input type="submit"/>
+    </form>
+</section>
+
+<section>
 
 <ul id="book-list">
     <li id="list-head" class="book-el flex tertiary">
