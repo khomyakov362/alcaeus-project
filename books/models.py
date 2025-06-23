@@ -10,7 +10,7 @@ class Book(models.Model):
     translator = models.CharField(max_length=100, verbose_name='translator', **NULLABLE)
     date = models.CharField(max_length=50, verbose_name='date', **NULLABLE)
     directory_path = models.CharField(max_length=50, verbose_name='directory path')
-    file_name = models.CharField(max_length=50, verbose_name='file name')
+    file_name = models.SlugField(max_length=50, verbose_name='file name', unique=True, db_index=True)
     language = models.CharField(max_length=10, verbose_name='language', **NULLABLE)
     xml_data = models.TextField(verbose_name='xml data')
 
@@ -59,6 +59,10 @@ class Book(models.Model):
             return int(str(self.date).strip()[0:4])
         except ValueError:
             return None
+    
+    @property
+    def name_no_xml(self) -> str:
+        return str(self.file_name).replace('.xml', '')
 
 
 

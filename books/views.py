@@ -20,7 +20,7 @@ class BooksListView(ListView):
             langs = ['latin', 'english', None, '']
         else:
             langs = [lang]
-        order_by = self.request.GET.get('order-by')
+        order_by = self.request.GET.get('orderby')
         if not order_by:
             order_by = 'title'
 

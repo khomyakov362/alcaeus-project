@@ -1,9 +1,13 @@
+{% load query_transform %}
 {% if is_paginated %}
 <section>
 <div id="pagination" class="flex">
 
     {% if page_obj.has_previous %}
-    <div><a href="?page={{ page_obj.has_previous_page_number }}" class="active">&lt;&lt;</a></div>
+    <div><a 
+        href="?{% query_transform page=page_obj.previous_page_number %}" 
+        class="active"
+        >&lt;&lt;</a></div>
     {% else %}
     <div><a class="disabled">&lt;&lt;</a></div>
     {% endif %}
@@ -15,7 +19,8 @@
     {% if page_obj.number == i %}
     <li><a class="disabled"> {{ i }}</a></li>
     {% else %}
-    <li><a href="?page={{ i }}" class="active"> {{ i }} </a></li>
+    <li><a href="?{% query_transform page=i %}" 
+        class="active"> {{ i }} </a></li>
     {% endif %}
 
     {% endfor %}
@@ -23,7 +28,8 @@
 </ul>
 
     {% if page_obj.has_next %}
-    <div><a href="?page={{ page_obj.next_page_number }}" class="active">&gt;&gt;</a></div>
+    <div><a href="?{% query_transform page=page_obj.next_page_number %}" 
+        class="active">&gt;&gt;</a></div>
     {% else %}
     <div><a class="disabled">&gt;&gt;</a></div>
     {% endif %}
