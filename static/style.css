@@ -94,6 +94,24 @@ main section > * {
     padding: 5px;
 }
 
+.book-el a {
+    justify-content: center;
+    align-items: center;
+    color: var(--text-secondary);
+    display: inherit;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    background-color: var(--secondary);
+    box-sizing: border-box;
+    padding: 5px;
+}
+
+.book-el a:hover {
+    color: var(--text-tertiary);
+    background-color: var(--tertiary);
+}
+
 .title, .author {
     width: 40%;
 }

@@ -1,4 +1,5 @@
 from django.db import models
+from bs4 import BeautifulSoup
 from users.models import NULLABLE
 
 
@@ -60,9 +61,12 @@ class Book(models.Model):
         except ValueError:
             return None
     
-    @property
-    def name_no_xml(self) -> str:
-        return str(self.file_name).replace('.xml', '')
+    @property 
+    def xml_header(self) -> str | None:
+        bs = BeautifulSoup(str(self.xml_data), 'xml')
+        header = bs.find('teiHeader')
+        return header.string
+    
 
 
 

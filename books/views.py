@@ -1,4 +1,4 @@
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from django.db.models import Q
 
 from books.models import Book
@@ -47,3 +47,11 @@ class BooksListView(ListView):
             return Book.objects.filter(language__in=langs).order_by(order_by)
 
     template_name = 'books/list.html'
+
+
+class BookDetailView(DetailView):
+    model = Book
+    template_name = 'books/detail.html'
+    slug_field = 'file_name'
+    slug_url_kwarg = 'file_name'
+

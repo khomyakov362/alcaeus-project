@@ -28,7 +28,7 @@ def make_book_dict(path: PathLike, relative_path_from: PathLike, xml_str : str) 
 
     path_obj = Path(path)
     directory_path = str(path_obj.relative_to(relative_path_from).parent)
-    file_name = path_obj.stem
+    file_name = path_obj.stem.replace('.', '-')
 
     if 'eng' in file_name: 
         lang = 'english'

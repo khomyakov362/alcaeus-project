@@ -14,11 +14,13 @@
         <div class="year">Edition Year</div>
     </li>
     {% for object in object_list %}
-    <li class="book-el flex">
+    <li class="book-el flex"> 
+    <a href="{% url 'books:book_detail' object.file_name %}">
         <div class="title">{{ object.short_title|default:"&mdash;" }}</div>
         <div class="author">{{ object.short_author|default:"&mdash;" }}</div>
         <div class="language">{{ object.cap_lang|default:"&mdash;" }}</div>
         <div class="year">{{ object.short_date|default:"&mdash;" }}</div>
+    </a>
     </li>
     {% endfor %}
 </ul>
