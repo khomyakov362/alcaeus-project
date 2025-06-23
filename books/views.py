@@ -16,31 +16,34 @@ class BooksListView(ListView):
         author = self.request.GET.get('author')
         title = self.request.GET.get('title')
         lang = self.request.GET.get('lang')
-        if lang:
+        if not lang:
             langs = ['latin', 'english', None, '']
         else:
             langs = [lang]
+        order_by = self.request.GET.get('order-by')
+        if not order_by:
+            order_by = 'title'
 
         if author and title:
             return Book.objects.filter(
                 Q(title__icontains=title) &
                 Q(author__icontains=author) &
                 Q(language__in=langs)
-            )
+            ).order_by(order_by)
         
         if author:
             return Book.objects.filter(
                 Q(author__icontains=author) &
                 Q(language__in=langs)
-            )
+            ).order_by(order_by)
 
         if title:
             return Book.objects.filter(
                 Q(title__icontains=title) &
                 Q(language__in=langs)
-            )
+            ).order_by(order_by)
         
         else:
-            return super().get_queryset()
+            return Book.objects.filter(language__in=langs).order_by(order_by)
 
     template_name = 'books/list.html'

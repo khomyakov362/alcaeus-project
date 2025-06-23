@@ -6,3 +6,11 @@
 .flex-wrap {
     flex-wrap: wrap;
 }
+
+.center-justify {
+    justify-items: center;
+}
+
+.center-align {
+    align-items: center;
+}
