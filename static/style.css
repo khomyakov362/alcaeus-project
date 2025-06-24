@@ -90,7 +90,8 @@ main section > * {
 .book-el {
     justify-content: center;
     align-items: center;
-    height: 2rem;
+    min-height: 2rem;
+    max-height: 4rem;
     padding: 5px;
 }
 
@@ -112,8 +113,12 @@ main section > * {
     background-color: var(--tertiary);
 }
 
-.title, .author {
-    width: 40%;
+.author {
+    width: 30%;
+}
+
+.title {
+    width: 60%;
 }
 
 .language, .year {
@@ -155,7 +160,7 @@ main section > * {
 }
 
 #pagination .active:hover, .disabled {
-    background-color: var(--socondry);
+    background-color: var(--secondary);
     color: var(--text-secondary);
     border: 1px solid var(--text-secondary);
 }

@@ -2,11 +2,12 @@ from os import PathLike, walk, path
 from itertools import chain
 from pathlib import Path
 
+from django.conf import settings
+
 from bs4 import BeautifulSoup
 
 
 def make_book_dict(path: PathLike, relative_path_from: PathLike, xml_str : str) -> dict:
-
     """Extracts some information from the book xml string 
     and its file path and puts it into a dict."""
 
@@ -30,10 +31,10 @@ def make_book_dict(path: PathLike, relative_path_from: PathLike, xml_str : str) 
     directory_path = str(path_obj.relative_to(relative_path_from).parent)
     file_name = path_obj.stem.replace('.', '-')
 
-    if 'eng' in file_name: 
-        lang = 'english'
-    elif 'lat' in file_name:
-        lang = 'latin'
+    for key, value in settings.LANG_VALUES.items():
+        if key in file_name:
+            lang = value
+            break
     else: 
         lang = None
 
@@ -47,6 +48,7 @@ def make_book_dict(path: PathLike, relative_path_from: PathLike, xml_str : str) 
         'file_name': file_name,
         'language': lang,
     }
+
 
 def generate_file_names(dir_path: str) -> list[str]:
     """Takes path to the data directory of a repo,

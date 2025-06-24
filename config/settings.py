@@ -173,3 +173,11 @@ BOOKS_REPO = 'https://github.com/PerseusDL/canonical-latinLit.git'
 REPO_DATA_DIR = (
     TEMP_FOLDER / 'data'
 )
+
+# Match languages and the part of book file names that is responsible for language.
+# Important for determining language of a book based on file name and for filtering by languages in list views.
+
+LANG_VALUES = {
+    'lat': 'latin',
+    'eng': 'english',
+}

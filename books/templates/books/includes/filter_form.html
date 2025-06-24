@@ -10,8 +10,11 @@
             <div class="flex center-align language"><label for="lang">Language:</label>
                 <select name="lang" id="lang">
                     <option value="">&mdash;</option>
-                    <option value="latin">Latin</option>
-                    <option value="english">English</option>
+                    {% for lang in languages %}
+
+                    <option value="{{lang}}">{{lang|capfirst}}</option>
+
+                    {% endfor %}
                 </select>
             </div>
         </div>
@@ -20,7 +23,7 @@
             <select name="orderby" id="oderby">
                 <option value="title">Title</option>
                 <option value="author">Author</option>
-                <option value="year">Year</option>
+                <option value="date">Year</option>
             </select>
             <button>Filter</button>
         </div>

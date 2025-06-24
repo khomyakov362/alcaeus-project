@@ -2,10 +2,9 @@
 
 {% block content %}
 
-{% include 'books/includes/filter_form.html' %}
+{% include 'books/includes/filter_form.html' with languages=languages %}
 
 <section>
-
 <ul id="book-list">
     <li id="list-head" class="book-el flex tertiary">
         <div class="title">Title</div> 
@@ -16,10 +15,10 @@
     {% for object in object_list %}
     <li class="book-el flex"> 
     <a href="{% url 'books:book_detail' object.file_name %}">
-        <div class="title">{{ object.short_title|default:"&mdash;" }}</div>
-        <div class="author">{{ object.short_author|default:"&mdash;" }}</div>
-        <div class="language">{{ object.cap_lang|default:"&mdash;" }}</div>
-        <div class="year">{{ object.short_date|default:"&mdash;" }}</div>
+        <div class="title">{{ object.title|default:"&mdash;" }}</div>
+        <div class="author">{{ object.author|default:"&mdash;" }}</div>
+        <div class="language">{{ object.language|capfirst|default:"&mdash;" }}</div>
+        <div class="year">{{ object.date|truncatechars:4|default:"&mdash;" }}</div>
     </a>
     </li>
     {% endfor %}

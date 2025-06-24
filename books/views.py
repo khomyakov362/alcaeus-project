@@ -1,23 +1,26 @@
 from django.views.generic import ListView, DetailView
 from django.db.models import Q
+from django.conf import settings
 
 from books.models import Book
+
+languages = list(settings.LANG_VALUES.values())
 
 
 class BooksListView(ListView):
     model = Book
     paginate_by = 30
-    extra_contenxt = {
+    extra_context = {
         'title': 'Books List',
+        'languages': languages
     }
-    queryset = Book.objects.order_by('title')
 
     def get_queryset(self):
         author = self.request.GET.get('author')
         title = self.request.GET.get('title')
         lang = self.request.GET.get('lang')
         if not lang:
-            langs = ['latin', 'english', None, '']
+            langs = [None] + languages
         else:
             langs = [lang]
         order_by = self.request.GET.get('orderby')
