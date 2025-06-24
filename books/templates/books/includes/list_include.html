@@ -1,0 +1,18 @@
+<ul id="book-list">
+    <li id="list-head" class="book-el flex tertiary">
+        <div class="title">Title</div> 
+        <div class="author">Author</div> 
+        <div class="language">Language</div> 
+        <div class="year">Edition Year</div>
+    </li>
+    {% for object in object_list %}
+    <li class="book-el flex"> 
+    <a href="{% url 'books:book_detail' object.file_name %}">
+        <div class="title">{{ object.title|default:"&mdash;" }}</div>
+        <div class="author">{{ object.author|default:"&mdash;" }}</div>
+        <div class="language">{{ object.language|capfirst|default:"&mdash;" }}</div>
+        <div class="year">{{ object.date|truncatechars:5|default:"&mdash;" }}</div>
+    </a>
+    </li>
+    {% endfor %}
+</ul>

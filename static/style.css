@@ -50,6 +50,7 @@ main {
 main section {
     padding: 20px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -61,6 +62,7 @@ main section > * {
 .filter-form label, select, input {
     display: block;
     height: 1.5rem;
+    box-sizing: border-box;
 }
 
 .filter-form label {
@@ -72,6 +74,10 @@ main section > * {
     margin-bottom: 20px;
 }
 
+.filter-form .upper div {
+    min-width: 100px;
+}
+
 .filter-form .lower * {
     margin-right: 20px;
 }
@@ -81,7 +87,6 @@ main section > * {
     height: 1.5 rem;
     display: block;
 }
-
 
 #list-head {
     font-weight: bold;

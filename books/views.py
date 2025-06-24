@@ -58,3 +58,16 @@ class BookDetailView(DetailView):
     slug_field = 'file_name'
     slug_url_kwarg = 'file_name'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        object_ = self.get_object()
+
+        associated_books = Book.objects.filter(
+            Q(directory_path=object_.directory_path) & 
+            ~ Q(pk=object_.pk)
+        )
+
+        context['associated_books'] = associated_books
+
+        return context
+

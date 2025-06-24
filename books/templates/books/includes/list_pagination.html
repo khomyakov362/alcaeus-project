@@ -1,6 +1,5 @@
 {% load query_transform %}
 {% if is_paginated %}
-<section>
 <div id="pagination" class="flex">
 
     {% if page_obj.has_previous %}
@@ -35,5 +34,4 @@
     {% endif %}
 
 </div>
-</section>
 {% endif %}

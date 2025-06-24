@@ -1,13 +1,12 @@
-<section>
     <form class="filter-form" action="{% url 'books:books_list' %}" method="get">
-        <div class="flex upper">
-            <div class="flex center-align title">
+        <div class="flex flex-wrap upper">
+            <div class="center-align title">
                 <label for="title">Title:</label> <input type="text" name="title" id="title">
             </div>
-            <div class="flex center-align author">
+            <div class="center-align author">
             <label for="author">Author:</label> <input type="text" name="author" id="author">
             </div>
-            <div class="flex center-align language"><label for="lang">Language:</label>
+            <div class="center-align language"><label for="lang">Language:</label>
                 <select name="lang" id="lang">
                     <option value="">&mdash;</option>
                     {% for lang in languages %}
@@ -28,4 +27,3 @@
             <button>Filter</button>
         </div>
     </form>
-</section>

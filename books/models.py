@@ -26,10 +26,10 @@ class Book(models.Model):
     def xml_header(self) -> str | None:
         bs = BeautifulSoup(str(self.xml_data), 'xml')
         header = bs.find('teiHeader')
-        return header.string
+
+        if header:
+            return header.prettify()
     
-
-
-
-
+    # @property
+    # def table_of_contents(self) -> tuple[str, tuple[str, ...]]:
 

@@ -2,4 +2,42 @@
 
 {% block content %}
 
+<section>
+    <ul class="book-meta">
+        <li class="flex">
+            <h3>Title:</h3> <p>{{ object.title|default:"&mdash;" }}</p> 
+        </li>
+        <li class="flex">
+            <h4>Author:</h4> <p>{{ object.author|default:"&mdash;" }}</p> 
+        </li>
+        <li class="flex">
+            <h4>Editor:</h4> <p>{{ object.editor|default:"&mdash;" }}</p> 
+        </li>
+        <li class="flex">
+            <h4>Translator:</h4> <p>{{ object.translator|default:"&mdash;" }}</p> 
+        </li>
+        <li class="flex">
+            <h4>Date of printing:</h4> <p>{{ object.date|default:"&mdash;" }}</p> 
+        </li>
+        <li class="flex">
+            <h4>Language:</h4> <p>{{ object.language|capfirst|default:"&mdash;" }}</p> 
+        </li>
+    </ul>
+</section>
+
+{% if associated_books %}
+
+<section>
+    <h2>Translations and alternative editions</h2>
+{% include 'books/includes/list_include.html' with object_list=associated_books %}
+</section>
+
+{% endif %}
+
+<section>
+    <div style="white-space: pre;">
+        {{ object.xml_header|default:"XML Document header is not available."}}
+    </div>
+</section>
+
 {% endblock %}
