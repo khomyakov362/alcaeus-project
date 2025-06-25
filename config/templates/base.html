@@ -15,9 +15,14 @@
     <header class="tertiary flex">
         <h1>Alcaeus Project</h1>
         <nav class="flex">
-            <div><a href="#">Browse Library</a></div>
+            <div><a href="{% url 'books:books_list' %}">Browse Library</a></div>
             <div><a href="#">About</a></div>
-            <div><a href="#">Sign In</a></div>
+            {% if user.is_authenticated %}
+            <div><a href="">Bookmarks</a></div>
+            <div><a href="">Profile</a></div>
+            {% else %}
+            <div><a href="{% url 'users:user_login' %}">Sign In</a></div>
+            {% endif %}
         </nav>
     </header>
 

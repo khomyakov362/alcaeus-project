@@ -59,6 +59,26 @@ main section > * {
     width: 80%;
 }
 
+h2 {
+    padding: 10px;
+}
+
+#book-meta {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+
+#book-meta li {
+    display: flex;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+#book-meta li * {
+    width: 50%;
+}
+
 .filter-form label, select, input {
     display: block;
     height: 1.5rem;

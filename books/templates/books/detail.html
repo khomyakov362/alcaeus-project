@@ -3,10 +3,8 @@
 {% block content %}
 
 <section>
-    <ul class="book-meta">
-        <li class="flex">
-            <h3>Title:</h3> <p>{{ object.title|default:"&mdash;" }}</p> 
-        </li>
+    <h2>{{ object.title|default:"&mdash;" }}</h2>
+    <ul id="book-meta">
         <li class="flex">
             <h4>Author:</h4> <p>{{ object.author|default:"&mdash;" }}</p> 
         </li>
@@ -35,6 +33,7 @@
 {% endif %}
 
 <section>
+    <h2>XML Document Header</h2>
     <div style="white-space: pre;">
         {{ object.xml_header|default:"XML Document header is not available."}}
     </div>
