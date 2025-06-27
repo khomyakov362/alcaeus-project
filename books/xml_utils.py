@@ -2,6 +2,7 @@ from os import PathLike, walk, path
 from itertools import chain
 from pathlib import Path
 
+import requests
 from django.conf import settings
 
 from bs4 import BeautifulSoup
@@ -72,3 +73,11 @@ def generate_file_names(dir_path: str) -> list[str]:
         file_paths))
     
     return cleaned_up_paths
+
+
+def send_to_convert(hosting: str, data: bytes):
+
+    address = hosting + '/ege-webservice//Conversions/TEI%3Atext%3Axml/xhtml%3Aapplication%3Axhtml%2Bxml/conversion?properties=<conversions><conversion index="0"><property id="oxgarage.getImages">true</property><property id="oxgarage.getOnlineImages">true</property><property id="oxgarage.lang">en</property><property id="oxgarage.textOnly">false</property><property id="pl.psnc.dl.ege.tei.profileNames">default</property></conversion></conversions>'
+    response = requests.post(address, files={'upload': data})
+
+    return response.text

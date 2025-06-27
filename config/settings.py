@@ -182,3 +182,9 @@ LANG_VALUES = {
     'lat': 'latin',
     'eng': 'english',
 }
+
+# Tei Garage web hosting adress: https://teigarage.tei-c.org/
+# unless hosted locally. 
+# Their API is used for converting documents to HTML
+
+TEIGARAGE = 'http://localhost:32768'

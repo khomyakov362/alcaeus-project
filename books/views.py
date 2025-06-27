@@ -3,7 +3,6 @@ from django.db.models import Q
 from django.conf import settings
 
 from books.models import Book
-from books.parsing.table_of_contents import get_table_of_contents
 
 languages = list(settings.LANG_VALUES.values())
 
@@ -70,8 +69,6 @@ class BookDetailView(DetailView):
 
         context['title'] = object_.title + 'Details'
         context['associated_books'] = associated_books
-        context['table'] = get_table_of_contents(object_.xml_data)
-        print(context['table'])
 
         return context
 

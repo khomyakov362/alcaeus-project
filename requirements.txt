@@ -5,3 +5,4 @@ Pillow
 Django
 lxml
 beautifulsoup4
+requests

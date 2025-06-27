@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.core.management import BaseCommand
 
-from books.xml_utils import generate_file_names, make_book_dict
+from books.xml_utils import generate_file_names, make_book_dict, send_to_convert
 from books.models import Book
 
 
@@ -21,6 +21,11 @@ class Command(BaseCommand):
 
                 book_dict = make_book_dict(path, settings.REPO_DATA_DIR, xml_str)
 
+                html = send_to_convert(settings.TEIGARAGE, xml_str)
+
+                if not html:
+                    html = None
+
                 print(book_dict['title'])
 
                 book = Book(
@@ -32,7 +37,8 @@ class Command(BaseCommand):
                     directory_path=book_dict['directory_path'],
                     file_name=book_dict['file_name'],
                     language=book_dict['language'],
-                    xml_data=xml_str
+                    xml_data=xml_str,
+                    html_data=html
                 )
 
                 book.save()

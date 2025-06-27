@@ -14,6 +14,7 @@ class Book(models.Model):
     file_name = models.SlugField(max_length=50, verbose_name='file name', unique=True, db_index=True)
     language = models.CharField(max_length=10, verbose_name='language', **NULLABLE)
     xml_data = models.TextField(verbose_name='xml data')
+    html_data = models.TextField(verbose_name='html data', **NULLABLE)   
 
     def __str__(self):
         return str(self.title)
