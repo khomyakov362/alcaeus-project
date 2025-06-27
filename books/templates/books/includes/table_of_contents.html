@@ -1,0 +1,38 @@
+{% if table %}
+
+<ul class="table-of-contents">
+
+{% for element in table %}
+
+<li>
+    {% if element.subtype %}
+    <div>{{element.subtype|capfirst}} {{element.n}}</div>
+    {% else %}
+    <div>{{element.type|capfirst}} {{element.n}}</div>
+    {% endif %}
+        {% if element.children %}
+
+        <ul>
+
+        {% for child in element.children %}
+
+            <li>
+                {% if child.subtype %}
+                <div>{{child.subtype|capfirst}} {{child.n}}</div>
+                {% else %}
+                <div>{{child.type|capfirst}} {{child.n}}</div>
+                {% endif %}
+            </li>
+        
+        {% endfor %}
+
+        </ul>
+
+        {% endif %}
+</li>
+
+{% endfor %}
+
+</ul>
+
+{% endif %}
