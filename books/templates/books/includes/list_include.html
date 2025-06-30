@@ -11,7 +11,11 @@
         <div class="title">{{ object.title|default:"&mdash;" }}</div>
         <div class="author">{{ object.author|default:"&mdash;" }}</div>
         <div class="language">{{ object.language|capfirst|default:"&mdash;" }}</div>
-        <div class="year">{{ object.date|truncatechars:5|default:"&mdash;" }}</div>
+        {% if object.date %}
+        <div class="year">{{ object.date|truncatechars:5 }}</div>
+        {% else %}
+        <div class="year">&mdash;</div>
+        {% endif %}
     </a>
     </li>
     {% endfor %}

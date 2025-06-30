@@ -3,7 +3,8 @@ from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 from django.views.generic import CreateView, UpdateView, ListView, DetailView
 
 from users.models import User
-from users.forms import UserRegisterForm, UserLoginForm, UserForm, UserUpdateForm, UserPasswordChangeForm
+from users.forms import UserRegisterForm, UserForm, UserUpdateForm, UserPasswordChangeForm
+from django.contrib.auth.forms import AuthenticationForm
 
 
 class UserRegisterView(CreateView):
@@ -15,14 +16,10 @@ class UserRegisterView(CreateView):
         'title' : 'User Registration'
     }
 
-    def form_valid(self, form):
-        self.object = form.save()
-        return super().form_valid(form)
-
 
 class UserLoginView(LoginView):
     template_name = 'users/login.html' 
-    form_class = UserLoginForm
+    form_class = AuthenticationForm
     extra_context = {
         'title' : 'Sign In'
     }
@@ -39,6 +36,7 @@ class UserProfileView(UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = self.get_object().username + 'Profile'
+        return context
 
 
 class UserUpdateView(UpdateView):
@@ -53,10 +51,7 @@ class UserUpdateView(UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = self.get_object().username + 'Profile Update'
-
-
-class UserLogoutView(LogoutView):
-    pass
+        return context
 
 
 class UserPasswordChangeView(PasswordChangeView):

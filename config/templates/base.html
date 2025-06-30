@@ -18,8 +18,8 @@
             <div><a href="{% url 'books:books_list' %}">Browse Library</a></div>
             <div><a href="#">About</a></div>
             {% if user.is_authenticated %}
-            <div><a href="">Bookmarks</a></div>
-            <div><a href="">Profile</a></div>
+            <div><a href="">Favourite</a></div>
+            <div><a href="{% url 'users:user_profile' %}">Profile</a></div>
             {% else %}
             <div><a href="{% url 'users:user_login' %}">Sign In</a></div>
             {% endif %}

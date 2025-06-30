@@ -155,6 +155,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'users.User'
 
 LOGIN_REDIRECT_URL = 'books:books_list'
+LOGOUT_REDIRECT_URL = 'books:books_list'
 
 # Project specific contastants
 
@@ -192,4 +193,4 @@ LANG_VALUES = {
 # unless hosted locally. 
 # Their API is used for converting documents to HTML
 
-TEIGARAGE = 'http://localhost:32768'
+TEIGARAGE = 'https://teigarage.tei-c.org/'

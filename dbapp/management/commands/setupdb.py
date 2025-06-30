@@ -7,12 +7,26 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
 
-        run(['py', 'manage.py', 'ccdb'])
-        for each in settings.CUSTOM_APPS:
-            run(['py', 'manage.py', 'makemigrations', each])
-        run(['py', 'manage.py', 'migrate'])
-        run(['py', 'manage.py', 'ccsu'])
-        run(['py', 'manage.py', 'clonerepo'])
-        run(['py', 'manage.py', 'loadbooks'])
+        migrations_args_lists = list(map(
+            lambda el: ['py', 'manage.py', 'makemigrations', el],
+            settings.CUSTOM_APPS
+        ))
+
+        args_lists = [['py', 'manage.py', 'ccdb']] + (
+        migrations_args_lists +
+        [
+            ['py', 'manage.py', 'migrate'],
+            ['py', 'manage.py', 'ccsu'],
+            ['py', 'manage.py', 'clonerepo'],
+            ['py', 'manage.py', 'loadbooks'],
+        ])
+
+        for list_ in args_lists:
+            proc = run(list_)
+            if proc.returncode != 0:
+                raise RuntimeError(f'The subprocess with arguments "{' '.join(list_)}" '
+                                    'ended with an unexpected error.\n'
+                                   f'Return code: {proc.returncode}')
+  
 
         print('\nSetup is finished. Ready to work with the project.')

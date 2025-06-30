@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import PasswordChangeForm, UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import PasswordChangeForm, UserCreationForm
 from django.contrib.auth import password_validation
 from django.core.exceptions import ValidationError
 
@@ -17,10 +17,6 @@ class UserRegisterForm(UserCreationForm):
             raise forms.ValidationError('The passwords don\'t match.', code='invalid')
         password_validation.validate_password(cd['password2'])
         return cd['password2']
-
-
-class UserLoginForm(AuthenticationForm):
-    pass
 
 
 class UserForm(forms.ModelForm):
