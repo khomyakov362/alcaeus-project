@@ -175,6 +175,11 @@ REPO_DATA_DIR = (
     TEMP_FOLDER / 'data'
 )
 
+# Is necessary for generating urn cts ids which are used in Scaife viewer and Philologic.
+# This one should work for most books in the given repository, but must be change for another one.
+
+CTS_URN_PREFIX = 'urn:cts:latinLit:'
+
 # Match languages and the part of book file names that is responsible for language.
 # Important for determining language of a book based on file name and for filtering by languages in list views.
 

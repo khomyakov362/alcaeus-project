@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.views.generic import ListView, DetailView
 from django.db.models import Q
 from django.conf import settings
@@ -72,3 +73,44 @@ class BookDetailView(DetailView):
 
         return context
 
+
+class PlainDocView(DetailView):
+    model = Book
+    slug_field = 'file_name'
+    slug_url_kwarg = 'file_name'
+
+    def get(self, request, *args, **kwargs):
+
+        if self.request.GET.get('rawXml') == 'true':
+            plain_content = self.get_object().xml_data
+            content_type = 'text/xml'
+        else:
+            plain_content = self.get_object().html_data
+            content_type = None
+
+        return HttpResponse(plain_content, content_type=content_type)
+        
+
+class DownloadDocView(DetailView):
+    model = Book
+    slug_field = 'file_name'
+    slug_url_kwarg = 'file_name'
+
+    def get(self, request, *args, **kwargs):
+        obj = self.get_object()
+
+        if self.request.GET.get('rawXml') == 'true':
+            plain_content = obj.xml_data
+            name = obj.file_name + '.xml'
+            type_ = 'text/xml'
+        else:
+            plain_content = obj.html_data
+            name = obj.file_name + '.html'
+            type_ = 'text/xhtml'
+
+        return HttpResponse(
+            plain_content, 
+            headers={
+            "Content-Type": f"{type_}",
+            "Content-Disposition": f'attachment; filename="{name}"',
+            })

@@ -75,9 +75,15 @@ def generate_file_names(dir_path: str) -> list[str]:
     return cleaned_up_paths
 
 
-def send_to_convert(hosting: str, data: bytes):
+def send_to_convert(hosting: str, data: bytes, ingore_non_error_responses=False):
+    """Sends an XML document to be converted to HTML on the TeiGarage hosting,
+    according to their API."""
 
     address = hosting + '/ege-webservice//Conversions/TEI%3Atext%3Axml/xhtml%3Aapplication%3Axhtml%2Bxml/conversion?properties=<conversions><conversion index="0"><property id="oxgarage.getImages">true</property><property id="oxgarage.getOnlineImages">true</property><property id="oxgarage.lang">en</property><property id="oxgarage.textOnly">false</property><property id="pl.psnc.dl.ege.tei.profileNames">default</property></conversion></conversions>'
     response = requests.post(address, files={'upload': data})
+
+    if ingore_non_error_responses and response.status_code != 200:
+        raise RuntimeError('Something went wrong on the TeiGarage side.\n'
+                          f' Response status code: {response.status_code}.')
 
     return response.text

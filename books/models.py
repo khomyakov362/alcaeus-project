@@ -1,5 +1,5 @@
+from django.conf import settings
 from django.db import models
-from bs4 import BeautifulSoup
 from users.models import NULLABLE
 
 
@@ -18,19 +18,17 @@ class Book(models.Model):
 
     def __str__(self):
         return str(self.title)
+
+    @property
+    def cts_urn(self) -> str:
+        string = self.file_name.replace('-', '.')
+
+        for key in settings.LANG_VALUES.keys():
+            string = string.replace(f'.{key}', f'-{key}')
+
+        return settings.CTS_URN_PREFIX + string
     
     class Meta:
         verbose_name = 'book'
         verbose_name_plural = 'books'
-
-    @property 
-    def xml_header(self) -> str | None:
-        bs = BeautifulSoup(str(self.xml_data), 'xml')
-        header = bs.find('teiHeader')
-
-        if header:
-            return header.prettify()
-    
-    # @property
-    # def table_of_contents(self) -> tuple[str, tuple[str, ...]]:
 

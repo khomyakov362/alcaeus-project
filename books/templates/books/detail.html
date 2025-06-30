@@ -21,6 +21,56 @@
             <h4>Language:</h4> <p>{{ object.language|capfirst|default:"&mdash;" }}</p> 
         </li>
     </ul>
+    <p>For more information, please, read the teiHeader in the xml document.</p>
+</section>
+
+<section>
+    <h2>Reading Options</h2>
+
+    <ul id="book-list">
+        <li class="book-el flex"> 
+        <a href="{% url 'books:book_plain_doc' object.file_name %}?rawXml=true">
+            <div class="title">Unstyled XML Document</div>
+        </a>
+        </li>
+        {% if object.html_data %}
+        <li class="book-el flex"> 
+        <a href="{% url 'books:book_plain_doc' object.file_name %}">
+            <div class="title">TEI HTML Document</div>
+        </a>
+        </li>
+        {% endif %}
+        <li class="book-el flex"> 
+        <a href="https://archive.org/search?query={{ object.title }}">
+            <div class="title">Look up on the Internet Archive</div>
+        </a>
+        </li>
+        <li class="book-el flex"> 
+        <a href="https://scaife.perseus.org/reader/{{ object.cts_urn }}/">
+            <div class="title">Look up on Scaife Viewer</div>
+        </a>
+        </li>
+    </ul>
+</section>
+
+<section>
+    <h2>Download Options</h2>
+
+    <ul id="book-list">
+        <li class="book-el flex"> 
+        <a href="{% url 'books:book_download_doc' object.file_name %}?rawXml=true">
+            <div class="title">XML Document</div>
+        </a>
+        </li>
+        {% if object.html_data %}
+        <li class="book-el flex"> 
+        <a href="{% url 'books:book_download_doc' object.file_name %}">
+            <div class="title">HTML Document</div>
+        </a>
+        </li>
+        {% endif %}
+    </ul>
+
 </section>
 
 {% if associated_books %}
@@ -31,12 +81,5 @@
 </section>
 
 {% endif %}
-
-<section>
-    <h2>XML Document Header</h2>
-    <div style="white-space: pre;">
-        {{ object.xml_header|default:"XML Document header is not available."}}
-    </div>
-</section>
 
 {% endblock %}
