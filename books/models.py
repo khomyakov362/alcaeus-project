@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.db import models
-from users.models import NULLABLE
+from users.models import NULLABLE, User
 
 
 class Book(models.Model):
@@ -32,3 +32,11 @@ class Book(models.Model):
         verbose_name = 'book'
         verbose_name_plural = 'books'
 
+
+class FavouriteBook(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='user')
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, verbose_name='book')
+
+    class Meta:
+        verbose_name = 'favourite book'
+        verbose_name_plural = 'favourite books'

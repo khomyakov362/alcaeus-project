@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section>
+    <div class="container">
+
+        <div>
+        <form id="user_form" method="post">
+            <p>
+                Are you sure you want to delete your account?
+                This decision is permanent and irreversible.
+            </p>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div id="user_info_options" class="flex">
+                <button type="submit">Yes</button>
+                <a href="{% url 'users:user_profile' %}">Cancel</a>
+            </div>
+        </form>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

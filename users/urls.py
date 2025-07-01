@@ -1,11 +1,7 @@
-from django.conf import settings
 from django.urls import path
 from users.apps import UsersConfig
 from django.contrib.auth.views import (
     LogoutView,
-    PasswordResetView,
-    PasswordResetDoneView,
-    PasswordResetConfirmView,
     PasswordResetCompleteView
 )
 
@@ -36,4 +32,5 @@ urlpatterns = [
              template_name='users/password_reset_complete.html'
          ), 
          name='user_reset_password_complete'),
+     path('<int:pk>/delete/', views.RemoveAccountView.as_view(), name='remove_account'),
 ]

@@ -1,14 +1,13 @@
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from django.urls import reverse_lazy
-from django.contrib.auth import login, authenticate
-from django.views.generic import CreateView, UpdateView
+from django.contrib.auth import login, authenticate, logout
+from django.views.generic import CreateView, UpdateView, DeleteView
 from django.contrib.auth.views import (
     LoginView,
     PasswordChangeView,
     PasswordResetView,
     PasswordResetDoneView,
     PasswordResetConfirmView,
-    PasswordResetCompleteView
 )
 from django.core.mail import send_mail
 from django.conf import settings
@@ -110,4 +109,29 @@ class UserPasswordResetDoneView(PasswordResetDoneView):
 class UserPasswordResetConfirmView(PasswordResetConfirmView):
     template_name = 'users/password_reset_confirm.html'
     success_url = reverse_lazy('users:user_reset_password_complete')
+
+
+class RemoveAccountView(DeleteView):
+    model = User
+    template_name = 'users/remove_account.html'
+    extra_context = {
+        'title': 'Deleting User Account'
+    }
+    success_url = reverse_lazy('books:books_list')
+
+    def get_object(self, queryset=None):
+        object_ = super().get_object()
+
+        if object_ != self.request.user:
+            raise Http404
+        
+        return object_
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        success_url = self.get_success_url()
+        logout(request)
+        self.object.delete()
+
+        return HttpResponseRedirect(success_url)
 

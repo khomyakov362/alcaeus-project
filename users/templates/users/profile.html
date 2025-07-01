@@ -11,6 +11,7 @@
     <div id="user_info_options" class="flex">
         <div><a href="{% url 'users:user_update' %}">Edit</a></div>
         <div><a href="{% url 'users:user_change_password' %}">Change Password</a></div>
+        <div><a href="{% url 'users:remove_account' user.pk %}">Delete Account</a></div>
         <form action="{% url 'users:user_logout' %}" method="post">
             {% csrf_token %}
             <button>Log Out</button>
