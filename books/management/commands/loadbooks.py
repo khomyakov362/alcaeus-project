@@ -9,7 +9,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         
-        print('Starting dumping boooks...')
+        print('Starting loading boooks in the database...')
 
         paths = generate_file_names(settings.REPO_DATA_DIR)
 

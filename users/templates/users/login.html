@@ -3,20 +3,22 @@
 {% block content %}
 
 <section>
+    <div class="container">
 
-{% csrf_token %}
+        <div>
+        <form id="user_form" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div><button type="submit">Log In</button></div>
+        </form>
 
-<form method="post">
-{% csrf_token %}
-{{ form.as_p }}
-<div><button type="submit">Log In</button></div>
-</form>
+        <div>
+            <p>Not Registered?</p>
+            <p><a href="{% url 'users:user_register' %}">Register</a></p>
+        </div>
+        </div>
 
-<div>
-    <p>Not Registered?</p>
-    <p><a href="">Register</a></p>
-</div>
-
+    </div>
 </section>
 
 {% endblock %}

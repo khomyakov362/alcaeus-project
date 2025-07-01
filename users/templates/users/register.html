@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section>
+    <div class="container">
+
+        <form id="user_form" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div><button type="submit">Register</button></div>
+            <p><em>Please, note: the email is only needed in case you need to recover your password.</em></p>
+        </form>
+
+    </div>
+</section>
+
+{% endblock %}

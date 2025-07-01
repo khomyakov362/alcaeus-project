@@ -11,8 +11,19 @@ html {
     /* border: 1px solid violet; */
 }
 
+a {
+    background-color: var(--secondary);
+    color: var(--text-secondary);
+    text-decoration: none;
+}
+
+a:hover {
+    background-color: var(--tertiary);
+    color: var(--text-tertiary);
+}
+
 header {
-    height: 50px;
+    min-height: 50px;
     padding: 10px;
 }
 
@@ -79,7 +90,7 @@ h2 {
     width: 50%;
 }
 
-.filter-form label, select, input {
+label, select, input {
     display: block;
     height: 1.5rem;
     box-sizing: border-box;
@@ -152,6 +163,29 @@ h2 {
 
 .year {
     text-align: center;
+}
+
+#user_form {
+    width: 400px;
+}
+
+#user_form > * {
+    margin-bottom: 10px;
+}
+
+#user_form input {
+    width: 400px;
+}
+
+#user_form button {
+    display: block;
+    padding: 5px;
+    justify-self: center;
+}
+
+#user_form ul, .errorlist {
+    list-style: none;
+    text-decoration: underline;
 }
 
 #pagination {

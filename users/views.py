@@ -1,6 +1,8 @@
+from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
-from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
-from django.views.generic import CreateView, UpdateView, ListView, DetailView
+from django.contrib.auth.views import LoginView, PasswordChangeView
+from django.contrib.auth import login, authenticate
+from django.views.generic import CreateView, UpdateView
 
 from users.models import User
 from users.forms import UserRegisterForm, UserForm, UserUpdateForm, UserPasswordChangeForm
@@ -10,11 +12,23 @@ from django.contrib.auth.forms import AuthenticationForm
 class UserRegisterView(CreateView):
     model = User
     form_class = UserRegisterForm
-    success_url = reverse_lazy('')
+    success_url = reverse_lazy('books:books_list')
     template_name = 'users/register.html'
     extra_context = {
         'title' : 'User Registration'
     }
+
+    def form_valid(self, form):
+
+        user = form.save(commit=False)
+        username = form.cleaned_data['username']
+        password = form.cleaned_data['password1']
+        user.set_password(password)
+        user.save()
+        auth_user = authenticate(username=username, password=password)
+        login(self.request, auth_user)
+
+        return HttpResponseRedirect(self.success_url)
 
 
 class UserLoginView(LoginView):
