@@ -157,6 +157,15 @@ AUTH_USER_MODEL = 'users.User'
 LOGIN_REDIRECT_URL = 'books:books_list'
 LOGOUT_REDIRECT_URL = 'books:books_list'
 
+# Email related settings
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+
 # Project specific contastants
 
 # Folder used to store books repository files before they are put into the database;
@@ -189,8 +198,8 @@ LANG_VALUES = {
     'eng': 'english',
 }
 
-# Tei Garage web hosting adress: https://teigarage.tei-c.org/
+# Tei Garage web hosting adress: https://teigarage.tei-c.org
 # unless hosted locally. 
 # Their API is used for converting documents to HTML
 
-TEIGARAGE = 'https://teigarage.tei-c.org/'
+TEIGARAGE = 'https://teigarage.tei-c.org'

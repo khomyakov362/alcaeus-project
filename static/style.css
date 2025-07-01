@@ -11,15 +11,18 @@ html {
     /* border: 1px solid violet; */
 }
 
-a {
+a, #user_info_options button {
     background-color: var(--secondary);
     color: var(--text-secondary);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: inherit;
     text-decoration: none;
 }
 
-a:hover {
+a:hover, #user_info_options button:hover {
     background-color: var(--tertiary);
     color: var(--text-tertiary);
+    cursor: pointer;
 }
 
 header {
@@ -173,7 +176,7 @@ label, select, input {
     margin-bottom: 10px;
 }
 
-#user_form input {
+#user_form input, #user_form textarea {
     width: 400px;
 }
 
@@ -222,6 +225,22 @@ label, select, input {
     background-color: var(--secondary);
     color: var(--text-secondary);
     border: 1px solid var(--text-secondary);
+}
+
+#user_info {
+    width: 400px;
+}
+
+#user_info * {
+    margin-bottom: 20px;
+}
+
+#user_info_options button {
+    border: none;
+}
+
+#user_info_options * {
+    margin-left: 10px;
 }
 
 footer {

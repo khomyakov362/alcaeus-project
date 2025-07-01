@@ -3,6 +3,8 @@ from django.urls import reverse_lazy
 from django.contrib.auth.views import LoginView, PasswordChangeView
 from django.contrib.auth import login, authenticate
 from django.views.generic import CreateView, UpdateView
+from django.core.mail import send_mail
+from django.conf import settings
 
 from users.models import User
 from users.forms import UserRegisterForm, UserForm, UserUpdateForm, UserPasswordChangeForm
@@ -23,8 +25,17 @@ class UserRegisterView(CreateView):
         user = form.save(commit=False)
         username = form.cleaned_data['username']
         password = form.cleaned_data['password1']
+        email = form.cleaned_data['email']
         user.set_password(password)
         user.save()
+
+        send_mail('You are registered on Alcaeus Project!', 
+                 (f'Hello, {username}.\n'
+                  'You have been registered on Alcaues Project.\n'
+                  'In case you need to recover your password you may use this email to do so.\n'
+                  'Happy reading and research!'),
+                  settings.EMAIL_HOST_USER, [email])
+
         auth_user = authenticate(username=username, password=password)
         login(self.request, auth_user)
 
@@ -49,7 +60,7 @@ class UserProfileView(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['title'] = self.get_object().username + 'Profile'
+        context['title'] = self.get_object().username + ' Profile'
         return context
 
 
@@ -70,5 +81,5 @@ class UserUpdateView(UpdateView):
 
 class UserPasswordChangeView(PasswordChangeView):
     form_class = UserPasswordChangeForm
-    template_name = 'users/change_password.html'
+    template_name = 'users/update_profile.html'
     success_url = reverse_lazy('users:user_profile')
