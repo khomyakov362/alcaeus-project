@@ -1,14 +1,26 @@
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
-from django.contrib.auth.views import LoginView, PasswordChangeView
 from django.contrib.auth import login, authenticate
 from django.views.generic import CreateView, UpdateView
+from django.contrib.auth.views import (
+    LoginView,
+    PasswordChangeView,
+    PasswordResetView,
+    PasswordResetDoneView,
+    PasswordResetConfirmView,
+    PasswordResetCompleteView
+)
 from django.core.mail import send_mail
 from django.conf import settings
 
 from users.models import User
-from users.forms import UserRegisterForm, UserForm, UserUpdateForm, UserPasswordChangeForm
 from django.contrib.auth.forms import AuthenticationForm
+from users.forms import (
+    UserRegisterForm, 
+    UserForm, 
+    UserUpdateForm, 
+    UserPasswordChangeForm
+)
 
 
 class UserRegisterView(CreateView):
@@ -83,3 +95,19 @@ class UserPasswordChangeView(PasswordChangeView):
     form_class = UserPasswordChangeForm
     template_name = 'users/update_profile.html'
     success_url = reverse_lazy('users:user_profile')
+
+
+class UserPasswordResetView(PasswordResetView):
+    template_name = 'users/password_reset.html',
+    email_template_name = 'users/password_reset_email.html',
+    success_url = reverse_lazy('users:user_reset_password_done')
+
+
+class UserPasswordResetDoneView(PasswordResetDoneView):
+    template_name = 'users/password_reset_done.html'
+
+
+class UserPasswordResetConfirmView(PasswordResetConfirmView):
+    template_name = 'users/password_reset_confirm.html'
+    success_url = reverse_lazy('users:user_reset_password_complete')
+

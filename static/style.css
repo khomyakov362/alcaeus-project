@@ -11,20 +11,6 @@ html {
     /* border: 1px solid violet; */
 }
 
-a, #user_info_options button {
-    background-color: var(--secondary);
-    color: var(--text-secondary);
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: inherit;
-    text-decoration: none;
-}
-
-a:hover, #user_info_options button:hover {
-    background-color: var(--tertiary);
-    color: var(--text-tertiary);
-    cursor: pointer;
-}
-
 header {
     min-height: 50px;
     padding: 10px;
@@ -241,6 +227,22 @@ label, select, input {
 
 #user_info_options * {
     margin-left: 10px;
+}
+
+a, #user_info_options button {
+    background-color: var(--secondary);
+    color: var(--text-secondary);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: inherit;
+    text-decoration: none;
+    display: inline;
+    padding: 0 0;
+}
+
+a:hover, #user_info_options button:hover {
+    background-color: var(--tertiary);
+    color: var(--text-tertiary);
+    cursor: pointer;
 }
 
 footer {
