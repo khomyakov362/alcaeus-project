@@ -1,9 +1,19 @@
-from django.http import HttpResponse
-from django.views.generic import ListView, DetailView
+from django.http import (
+    HttpResponse, 
+    HttpResponseRedirect,
+    Http404
+)
+from django.urls import reverse_lazy
+from django.views.generic import (
+    ListView, 
+    DetailView,
+    CreateView,
+    DeleteView
+)
 from django.db.models import Q
 from django.conf import settings
 
-from books.models import Book
+from books.models import Book, FavouriteBook
 
 languages = list(settings.LANG_VALUES.values())
 
@@ -63,6 +73,16 @@ class BookDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         object_ = self.get_object()
 
+        if self.request.user.is_authenticated:
+            try:
+                favourite = FavouriteBook.objects.get(
+                    book=object_,
+                    user=self.request.user
+                )
+            except FavouriteBook.DoesNotExist:
+                favourite = None
+        else: favourite = None
+
         associated_books = Book.objects.filter(
             Q(directory_path=object_.directory_path) & 
             ~ Q(pk=object_.pk)
@@ -70,6 +90,7 @@ class BookDetailView(DetailView):
 
         context['title'] = object_.title + 'Details'
         context['associated_books'] = associated_books
+        context['favourite'] = favourite
 
         return context
 
@@ -114,3 +135,61 @@ class DownloadDocView(DetailView):
             "Content-Type": f"{type_}",
             "Content-Disposition": f'attachment; filename="{name}"',
             })
+    
+
+class AddFavouriteView(CreateView):
+    model = FavouriteBook
+
+    def post(self, request, *args, **kwargs):
+
+        if self.request.POST:
+            user = self.request.user
+            book_pk = self.request.POST.get('book_pk')
+            book = Book.objects.get(pk=book_pk)
+            self.model.objects.get_or_create(user=user, book=book)
+            return HttpResponseRedirect(
+                reverse_lazy('books:book_detail', kwargs={'file_name': book.file_name})
+                )
+    
+
+class RemoveFavouriteView(DeleteView):
+    model = FavouriteBook
+    success_url = reverse_lazy('books:favourite_list')
+
+    def get_object(self, queryset = ...):
+        object_ = super().get_object()
+        if object_.user != self.request.user:
+            raise Http404
+        
+        return object_
+    
+
+class RemoveFromBookDetailView(RemoveFavouriteView):
+    success_url = None
+
+    def get_success_url(self):
+        return reverse_lazy(
+            'books:book_detail', 
+            kwargs={'file_name': self.get_object().book.file_name})
+                
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        book = self.object.book
+        self.object.delete()
+
+        return HttpResponseRedirect(
+            reverse_lazy('books:book_detail', kwargs={'file_name': book.file_name})
+        )
+
+
+class FavouriteListView(ListView):
+
+    model = FavouriteBook
+    template_name = 'books/favourite_list.html'
+
+    def get_queryset(self):
+        
+        return self.model.objects.filter(
+            user=self.request.user
+        )

@@ -1,0 +1,18 @@
+{% if user.is_authenticated %}
+{% if favourite %}
+
+    <form class="star-form" method="post" action="{% url 'books:remove_favourite_detail' favourite.pk %}">
+        {% csrf_token %}
+        <button id="fav-rm-btn" title="Remove from favourite">&starf;</button>
+    </form>
+
+{% else %}
+
+    <form class="star-form" method="post" action="{% url 'books:book_add_favourite' %}">
+        {% csrf_token %}
+        <input type="hidden" id="book_pk" name="book_pk" value="{{ object.pk }}">
+        <button id="fav-add-btn" title="Add to favourite">&starf;</button>
+    </form>
+
+{% endif %}
+{% endif %}

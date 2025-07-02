@@ -3,7 +3,7 @@
 {% block content %}
 
 <section>
-    <h2>{{ object.title|default:"&mdash;" }}</h2>
+    <h2>{{ object.title|default:"&mdash;" }} {% include 'books/includes/favourite_button.html' %}</h2>
     <ul id="book-meta">
         <li class="flex">
             <h4>Author:</h4> <p>{{ object.author|default:"&mdash;" }}</p> 
@@ -44,6 +44,7 @@
         <a href="https://archive.org/search?query={{ object.title }}">
             <div class="title">Look up on the Internet Archive</div>
         </a>
+
         </li>
         <li class="book-el flex"> 
         <a href="https://scaife.perseus.org/reader/{{ object.cts_urn }}/">

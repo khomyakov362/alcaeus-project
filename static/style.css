@@ -154,6 +154,30 @@ label, select, input {
     text-align: center;
 }
 
+.star-form {
+    display: inline;
+}
+
+.star-form button:hover {
+    cursor: pointer;
+}
+
+#fav-rm-btn, #fav-add-btn {
+    margin: none;
+    padding: none;
+    background: inherit;
+    border: none;
+    font-size: inherit;
+}
+
+#fav-rm-btn, #fav-add-btn:hover {
+    color: rgb(215, 235, 40);
+}
+
+#fav-add-btn, #fav-rm-btn:hover {
+    color: inherit;
+}
+
 #user_form {
     width: 400px;
 }
