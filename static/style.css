@@ -158,11 +158,11 @@ label, select, input {
     display: inline;
 }
 
-.star-form button:hover {
+.star-form button:hover, .rubbish-bin:hover {
     cursor: pointer;
 }
 
-#fav-rm-btn, #fav-add-btn {
+#fav-rm-btn, #fav-add-btn, .rubbish-bin {
     margin: none;
     padding: none;
     background: inherit;
@@ -176,6 +176,14 @@ label, select, input {
 
 #fav-add-btn, #fav-rm-btn:hover {
     color: inherit;
+}
+
+.rubbish-bin {
+    font-size: 1.7rem;
+}
+
+.rubbish-bin:hover {
+    color: brown;
 }
 
 #user_form {

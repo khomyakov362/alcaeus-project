@@ -168,6 +168,7 @@ class RemoveFromBookDetailView(RemoveFavouriteView):
     success_url = None
 
     def get_success_url(self):
+
         return reverse_lazy(
             'books:book_detail', 
             kwargs={'file_name': self.get_object().book.file_name})
@@ -187,8 +188,14 @@ class FavouriteListView(ListView):
 
     model = FavouriteBook
     template_name = 'books/favourite_list.html'
+    extra_context = {
+        'title': 'Your Favourite Books',
+    }
 
     def get_queryset(self):
+
+        if not self.request.user.is_authenticated:
+            raise Http404
         
         return self.model.objects.filter(
             user=self.request.user

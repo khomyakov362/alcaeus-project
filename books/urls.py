@@ -16,4 +16,5 @@ urlpatterns = [
     path('<int:pk>/remove-favourite-detail/', 
          views.RemoveFromBookDetailView.as_view(), 
          name='remove_favourite_detail'),
+    path('favourite-list/', views.FavouriteListView.as_view(), name='favourite_list'),
 ]

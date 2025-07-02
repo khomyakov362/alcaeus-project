@@ -16,9 +16,9 @@
         <h1>Alcaeus Project</h1>
         <nav class="flex">
             <div><a href="{% url 'books:books_list' %}">Browse Library</a></div>
-            <div><a href="#">About</a></div>
+            <div><a href="{% url 'about' %}">About</a></div>
             {% if user.is_authenticated %}
-            <div><a href="">Favourite</a></div>
+            <div><a href="{% url 'books:favourite_list' %}">Favourite</a></div>
             <div><a href="{% url 'users:user_profile' %}">Profile</a></div>
             {% else %}
             <div><a href="{% url 'users:user_login' %}">Sign In</a></div>
@@ -34,7 +34,8 @@
     <footer class="tertiary">
 
         <div>
-        <p>This is a student project by Nikolay Khomyakov.</p>  <p>You can contact me at <em>khomaykov362@gmail.com</em></p>
+        <p>This is a student project by Nikolay Khomyakov.</p>  
+        <p>You can contact me at <em>khomaykov362@gmail.com</em></p>
         </div>
 
     </footer>
