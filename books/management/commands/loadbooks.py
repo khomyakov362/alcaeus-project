@@ -12,6 +12,7 @@ class Command(BaseCommand):
         print('Starting loading boooks in the database...')
 
         paths = generate_file_names(settings.REPO_DATA_DIR)
+        counter = 0
 
         for path in paths:
 
@@ -49,6 +50,12 @@ class Command(BaseCommand):
                 )
 
                 book.save()
+
+            counter += 1 
+
+            if (settings.BOOK_LIMIT is not None and
+                counter == settings.BOOK_LIMIT):
+                break
         
         print('The books have been loaded successfully.')
 

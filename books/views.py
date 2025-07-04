@@ -21,6 +21,7 @@ languages = list(settings.LANG_VALUES.values())
 class BooksListView(ListView):
     model = Book
     paginate_by = 30
+    template_name = 'books/list.html'
     extra_context = {
         'title': 'Books List',
         'languages': languages
@@ -59,8 +60,6 @@ class BooksListView(ListView):
         
         else:
             return Book.objects.filter(language__in=langs).order_by(order_by)
-
-    template_name = 'books/list.html'
 
 
 class BookDetailView(DetailView):
@@ -147,9 +146,10 @@ class AddFavouriteView(CreateView):
             book_pk = self.request.POST.get('book_pk')
             book = Book.objects.get(pk=book_pk)
             self.model.objects.get_or_create(user=user, book=book)
-            return HttpResponseRedirect(
-                reverse_lazy('books:book_detail', kwargs={'file_name': book.file_name})
-                )
+            return HttpResponseRedirect(reverse_lazy(
+                'books:book_detail', 
+                kwargs={'file_name': book.file_name}
+                ))
     
 
 class RemoveFavouriteView(DeleteView):
@@ -179,9 +179,10 @@ class RemoveFromBookDetailView(RemoveFavouriteView):
         book = self.object.book
         self.object.delete()
 
-        return HttpResponseRedirect(
-            reverse_lazy('books:book_detail', kwargs={'file_name': book.file_name})
-        )
+        return HttpResponseRedirect(reverse_lazy(
+            'books:book_detail', 
+            kwargs={'file_name': book.file_name}
+            ))
 
 
 class FavouriteListView(ListView):
