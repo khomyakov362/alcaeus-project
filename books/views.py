@@ -87,7 +87,7 @@ class BookDetailView(DetailView):
             ~ Q(pk=object_.pk)
         )
 
-        context['title'] = object_.title + 'Details'
+        context['title'] = object_.title + ' Details'
         context['associated_books'] = associated_books
         context['favourite'] = favourite
 
