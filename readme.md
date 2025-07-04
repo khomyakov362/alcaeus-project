@@ -23,7 +23,7 @@ All the books are in TEI XML format. More about the format can be learnt
 
 ```shell
     cd <your folder>
-    git clone https://github.com/khomyakov362/a_drf_project.git
+    git clone https://github.com/khomyakov362/alcaeus-project
 ```
 2. Create virtual environment:
 
