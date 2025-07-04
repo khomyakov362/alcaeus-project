@@ -9,15 +9,15 @@ Commands are given by applications.
 ### ccsu
 
 Command to Create Super User. Creates admin user inside the database with email,
-ysername and password provided in the .env file.
+username and password provided in the .env file.
 
 ## DBapp
 
 ### ccdb
 
 Command to create database with the name given in the .env file,
-the database has default settings for a MSSQL database.
-The command is given from the pad database given in .env.
+the database has default settings for an MSSQL database.
+The command is given from the pad database set in .env.
 
 ### dropdb
 
@@ -27,7 +27,7 @@ of the current database as user input to confirm.
 ### setupdb
 
 Sets up a fresh database for the project;
-is the equivalent of running the following commnds:
+is the equivalent of running the following commands:
 
 ```bash
     py manage.py ccdb
@@ -60,5 +60,3 @@ Deletes temporary files at settings.TEMP_FOLDER.
 
 Loads all the books from the repository data directory into the database.
 Does not check, if the books are already there. The same book can be loaded many times.
-
-

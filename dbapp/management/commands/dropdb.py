@@ -4,6 +4,9 @@ from config.settings import USER, PASSWORD, HOST, DRIVER, PAD_DATABASE, DATABASE
 
 class Command(BaseCommand):
 
+    help = """Drops the current database. The caller will be asked to provide the name
+of the current database as user input to confirm."""
+
     def handle(self, *args, **kwargs):
         connection_string = f'''DRIVER={DRIVER};SERVER={HOST};DATABASE={PAD_DATABASE};UID={USER};PWD={PASSWORD}'''
     

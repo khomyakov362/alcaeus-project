@@ -10,6 +10,11 @@ from books.management.rmtree_error_handler import handleRemoveReadonly
 
 class Command(BaseCommand):
 
+    help = """The command clones the repository from settings.BOOKS_REPO 
+and puts it into settings.TEMP_FOLDER. 
+If the folder is not empty, its contents will be deleted;
+if it is not present, it will be created."""
+
     @staticmethod
     def _ensure_dir_exists_and_empty(direc: Path):
         

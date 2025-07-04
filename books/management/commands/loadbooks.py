@@ -7,6 +7,9 @@ from books.models import Book
 
 class Command(BaseCommand):
 
+    help = """Loads all the books from the repository data directory into the database.
+Does not check, if the books are already there. The same book can be loaded many times."""
+
     def handle(self, *args, **options):
         
         print('Starting loading boooks in the database...')

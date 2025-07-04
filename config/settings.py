@@ -168,10 +168,10 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
-# Project specific contastants
+# Project specific constants
 
 # Folder used to store books repository files before they are put into the database;
-# shoud get deleted after.
+# should get deleted after.
 
 TEMP_FOLDER = (
     BASE_DIR / 'temp_files'
@@ -187,7 +187,7 @@ REPO_DATA_DIR = (
     TEMP_FOLDER / 'data'
 )
 
-# Is necessary for generating urn cts ids which are used in Scaife viewer and Philologic.
+# Is necessary for generating urn cts ids which are used in Scaife viewer.
 # This one should work for most books in the given repository, but must be change for another one.
 
 CTS_URN_PREFIX = 'urn:cts:latinLit:'
@@ -200,13 +200,13 @@ LANG_VALUES = {
     'eng': 'english',
 }
 
-# Tei Garage web hosting adress: https://teigarage.tei-c.org
+# Tei Garage web hosting address: https://teigarage.tei-c.org
 # unless hosted locally. 
 # Their API is used for converting documents to HTML
 
 TEIGARAGE = 'https://teigarage.tei-c.org'
 
-# Number limiting the number of books to be laoded into the database. 
+# Number limiting the number of books to be loaded into the database. 
 # If left as None, there is no limit. A specific number may be given for testing purposes.
 
 BOOK_LIMIT = None

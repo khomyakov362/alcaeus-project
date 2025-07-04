@@ -6,6 +6,8 @@ from django.conf import settings
 from books.management.rmtree_error_handler import handleRemoveReadonly
 
 class Command(BaseCommand):
+
+    help = 'Deletes temporary files at settings.TEMP_FOLDER.'
     
     def handle(self, *args, **options):
         

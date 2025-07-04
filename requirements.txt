@@ -1,7 +1,6 @@
 mssql-django
 python-dotenv
 pyodbc
-Pillow
 Django
 lxml
 beautifulsoup4

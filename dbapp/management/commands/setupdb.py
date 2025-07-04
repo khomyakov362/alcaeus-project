@@ -7,6 +7,8 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
 
+        help = "Sets up a fresh database for the project."
+
         migrations_args_lists = list(map(
             lambda el: ['py', 'manage.py', 'makemigrations', el],
             settings.CUSTOM_APPS
