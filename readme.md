@@ -17,6 +17,14 @@ All the books are in TEI XML format. More about the format can be learnt
 - Books can be automatically searched on [The Internet Archive](https://archive.org/) and on [Scaife Viewer](https://scaife.perseus.org/) by CTS URN ID.
 - Registered users can mark books as favourite.
 
+## External Requirements
+
+- Git
+- Microsoft SQL Server
+- Docker (optional, for running TEIGarage)
+
+The project should work on Linux given the requirements, but it has only been tested on Windows 11.
+
 ## Installation
 
 1. Navigate to a folder and clone the repository:
