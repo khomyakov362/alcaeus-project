@@ -97,8 +97,8 @@ class UserPasswordChangeView(PasswordChangeView):
 
 
 class UserPasswordResetView(PasswordResetView):
-    template_name = 'users/password_reset.html',
-    email_template_name = 'users/password_reset_email.html',
+    template_name = 'users/password_reset.html'
+    email_template_name = 'users/password_reset_email.html'
     success_url = reverse_lazy('users:user_reset_password_done')
 
 
