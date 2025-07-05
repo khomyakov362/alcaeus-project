@@ -36,7 +36,7 @@ The project should work on Linux given the requirements, but it has only been te
 2. Create virtual environment:
 
 ```shell
-    python -m venv ./venv
+    py -m venv ./venv
 ```
 
 4. Activate venv:
@@ -53,14 +53,13 @@ For Windows Powershell:
 
 5. Instal requirements:
 
-For Linux:
 ```shell
     pip install -r requirements.txt
 ```
 
 6. Create .env file in the root directory based on .env_sample.
 
-7. Optional --- Run TEIGarage in a Docker Container:
+7. Optional &#2014; Run TEIGarage in a Docker Container:
 
 Running TEIGarage locally may significantly improve the speed of loading books to the database.
 The command:
@@ -69,7 +68,7 @@ The command:
 ```
 You may refer to their documentation at [github.com/TEIC/TEIGarage](https://github.com/TEIC/TEIGarage/).
 
-8. Optional --- Tweak .config/settings.py:
+8. Optional &#2014; Tweak .config/settings.py:
 
 You may want to change some email related settings (lines 162 - 169). The settings given are for gmail.com.
 
