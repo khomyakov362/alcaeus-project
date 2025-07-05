@@ -59,7 +59,7 @@ For Windows Powershell:
 
 6. Create .env file in the root directory based on .env_sample.
 
-7. Optional &#2014; Run TEIGarage in a Docker Container:
+7. Optional &mdash; Run TEIGarage in a Docker Container:
 
 Running TEIGarage locally may significantly improve the speed of loading books to the database.
 The command:
@@ -68,7 +68,7 @@ The command:
 ```
 You may refer to their documentation at [github.com/TEIC/TEIGarage](https://github.com/TEIC/TEIGarage/).
 
-8. Optional &#2014; Tweak .config/settings.py:
+8. Optional &mdash; Tweak .config/settings.py:
 
 You may want to change some email related settings (lines 162 - 169). The settings given are for gmail.com.
 
